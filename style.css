@@ -1,0 +1,11 @@
+img{
+    height: 700px !important;
+}
+button{
+    opacity: 0.8;
+}
+
+.amount{
+    color: rgb(67, 67, 244);
+    opacity: 0.5;
+}
