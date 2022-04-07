@@ -4,7 +4,7 @@ function getInputValue() {
     const rentCost = document.getElementById("rent-cost").value;
     const clothesCost = document.getElementById("clothes-cost").value;
     const save = document.getElementById("save-field").value;
-    const incomeAmount = document.getElementById("income-amount").innerText;
+    const incomeAmount = document.getElementById("income-amount");
 
     return { income, foodCost, rentCost, clothesCost, save, incomeAmount };
 };
@@ -19,31 +19,40 @@ function clearValue(){
 };
 
 //--------------------    Calculate Button event handler   -------------------------
-document.getElementById("calculate-btn").addEventListener("click", function () {
-    const income = getInputValue().income;
-    const foodCost = getInputValue().foodCost;
-    const rentCost = getInputValue().rentCost;
-    const clothesCost = getInputValue().clothesCost;
-
-
+document.getElementById("calculate-btn").addEventListener("click", function (e) {
+    e.preventDefault();
+    const incomeError = document.getElementById("income-error");
     const displayExpenses = document.getElementById("total-expenses");
-    const totalExpenses = parseFloat(foodCost) + parseFloat(rentCost) + parseFloat(clothesCost);
-
     const displayBalance = document.getElementById("balance");
-    const balance = parseFloat(income) - totalExpenses;
 
-    const incomeAmount = document.getElementById("income-amount");
+    const income = getInputValue().income;
+    console.log(income)
 
-    if (balance < 0) {
-        alert("Expenses is more than income")
+    if(income<0 || income === '' ){
+        incomeError.innerHTML = `<p style = "color:red" >Number must be positive or no Empty</p>`
+    }else{
+            incomeError.innerHTML = `<p style = > </p>`
+        const foodCost = getInputValue().foodCost >0 ?  getInputValue().foodCost : 0;
+        const rentCost = getInputValue().rentCost >0 ?  getInputValue().rentCost : 0;
+        const clothesCost = getInputValue().clothesCost >0 ? getInputValue().clothesCost : 0;
+        const incomeAmount = getInputValue().incomeAmount;
+
+        console.log()
+        
+        const totalExpenses = parseFloat(foodCost) + parseFloat(rentCost) + parseFloat(clothesCost);
+        const balance = parseFloat(income) - totalExpenses;
+        if(balance < 0){
+            alert("Expenses is more than income")
+        }else{
+            displayExpenses.innerText = totalExpenses;
+            displayBalance.innerText = balance;
+            incomeAmount.innerText = income;
+            clearValue();
+        }
+
+
     }
-    else {
-        displayExpenses.innerText = totalExpenses;
-        displayBalance.innerText = balance;
-        incomeAmount.innerText = income;
 
-       clearValue();
-    }
 });
 
 //----------------------      Save Button event handler   -----------------------
@@ -52,7 +61,7 @@ document.getElementById("save-btn").addEventListener("click", function () {
     const incomeAmount = getInputValue().incomeAmount;
 
     //-----------------          saving amount         -------------------
-    const income = incomeAmount;
+    const income = incomeAmount.innerText;
     const saving =  (save / 100) * income;
     const savingAmount = document.getElementById("saving-amount");
     savingAmount.innerText = saving;
@@ -64,4 +73,5 @@ document.getElementById("save-btn").addEventListener("click", function () {
     displayRemaining.innerText = remainingAmount;
 
     clearValue();
+
 });
