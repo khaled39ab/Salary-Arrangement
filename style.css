@@ -9,3 +9,7 @@ button{
     color: rgb(67, 67, 244);
     opacity: 0.5;
 }
+
+#income-amount{
+    display: none;
+}
