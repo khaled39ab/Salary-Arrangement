@@ -26,7 +26,6 @@ document.getElementById("calculate-btn").addEventListener("click", function (e) 
     const displayBalance = document.getElementById("balance");
 
     const income = getInputValue().income;
-    console.log(income)
 
     if(income<0 || income === '' ){
         incomeError.innerHTML = `<p style = "color:red" >Number must be positive or no Empty</p>`
@@ -36,8 +35,6 @@ document.getElementById("calculate-btn").addEventListener("click", function (e) 
         const rentCost = getInputValue().rentCost >0 ?  getInputValue().rentCost : 0;
         const clothesCost = getInputValue().clothesCost >0 ? getInputValue().clothesCost : 0;
         const incomeAmount = getInputValue().incomeAmount;
-
-        console.log()
         
         const totalExpenses = parseFloat(foodCost) + parseFloat(rentCost) + parseFloat(clothesCost);
         const balance = parseFloat(income) - totalExpenses;
