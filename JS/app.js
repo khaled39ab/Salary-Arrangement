@@ -4,7 +4,7 @@
 //-----------------  Calculate Button -------------------------
 document.getElementById("calculate-btn").addEventListener("click", function(){
     const income = document.getElementById("income-field").value;
-    document.getElementById("income-field").value = "";
+    // document.getElementById("income-field").value = "";
     const foodCost = document.getElementById("food-cost").value;
     document.getElementById("food-cost").value = "";
     const rentCost = document.getElementById("rent-cost").value;
@@ -32,3 +32,15 @@ document.getElementById("calculate-btn").addEventListener("click", function(){
     }
 });
 
+//----------------------      Save Button    -----------------------
+document.getElementById("save-btn").addEventListener("click", function(){
+    const income = document.getElementById("income-field").value;
+    // document.getElementById("income-field").value = "";
+
+    const save = document.getElementById("save-field").value;
+    // document.getElementById("save-field").value = "";
+
+    const saving = income / save;
+    const savingAmount = document.getElementById("saving-amount");
+    savingAmount.innerText = saving;
+});
